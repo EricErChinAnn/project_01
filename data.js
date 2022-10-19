@@ -4,7 +4,8 @@ const headers = {
     Accept: 'application/json',
     Authorization: API_KEY    
 }
-const categoriesList = {
+function selectedCategory(data){
+let categoriesList = {
     "all":18021,
     "boxing":18022,
     "climbing":18023,
@@ -14,6 +15,9 @@ const categoriesList = {
     "pilates":18027,
     "yoga":18028
 }
+return categoriesList[data];
+}
+
 async function search(lat, lng, query="",categories=18021) {
     let ll = lat + "," + lng;
     let response = await axios.get(API_BASE_URL + "search",{
@@ -23,7 +27,7 @@ async function search(lat, lng, query="",categories=18021) {
             'v': '20221017',  // YYYYMMDD format
             'query': query,
             'categories':categories,
-            'radius': 10000,
+            'radius': 5000,
             'limit': 50
         }
     })
