@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }).addTo(map);
 
 
-    let database = await search(1.3521, 103.8189, "gym");
+    let database = await search(1.3521, 103.8189);
 
     let markerClusterLayer = L.markerClusterGroup();
     markerClusterLayer.addTo(map);
@@ -23,18 +23,26 @@ window.addEventListener('DOMContentLoaded', async () => {
         let lat = eachSearch.geocodes.main.latitude;
         let lng = eachSearch.geocodes.main.longitude;
         let searchMarker = L.marker([lat, lng]);
-        let picData = await searchPic(eachSearch.fsq_id)
-        searchMarker.bindPopup(`
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="${picData[0].prefix}original${picData[0].suffix}">
+        searchMarker.bindPopup(() => {
+            let ele = document.createElement('div');
+            ele.classList.add("card");
+            ele.style.width = "18rem";
+            async function getPic() {
+                let picData = await searchPic(eachSearch.fsq_id);
+                let picURL = picData[0]; 
+                let picURLFull = picURL.prefix + "original" + picURL.suffix;
+                ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
+            }
+            getPic();
+            ele.innerHTML += `
             <div class="card-body">
                 <h5 class="card-title">${eachSearch.name}</h5>
                 <p class="card-text">${eachSearch.location.formatted_address}</p>
-            </div>
-      </div>
-      `)
-        searchMarker.addTo(markerClusterLayer);
+            </div>`;
+            return ele;
+        })
+            searchMarker.addTo(markerClusterLayer);
     }
-    
+
 
 })
