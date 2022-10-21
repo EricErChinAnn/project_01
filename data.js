@@ -18,7 +18,7 @@ let categoriesList = {
 return categoriesList[data];
 }
 
-async function search(lat, lng, query="",categories=18021) {
+async function search(lat, lng, categories, query="") {
     let ll = lat + "," + lng;
     let response = await axios.get(API_BASE_URL + "search",{
         headers: headers,
@@ -27,7 +27,7 @@ async function search(lat, lng, query="",categories=18021) {
             'v': '20221017',  // YYYYMMDD format
             'query': query,
             'categories':categories,
-            'radius': 5000,
+            'radius': 10000,
             'limit': 50
         }
     })

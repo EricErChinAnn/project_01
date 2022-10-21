@@ -9,3 +9,8 @@
     top: 10px;
     z-index: 300000;
 }
+
+#resultDisplay{
+    max-height: 300px;
+    overflow-y:scroll;
+}
