@@ -62,8 +62,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 async function getPic() {
                     let picData = await searchPic(eachSearch.fsq_id);
                     let picURL = picData[0];
-                    let picURLFull = picURL.prefix + "original" + picURL.suffix;
-                    ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
+                    if(picURL){
+                        let picURLFull = picURL.prefix + "original" + picURL.suffix;
+                        ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
+                    } else {
+                        ele.innerHTML += `<img class="card-img-top" src="${placeholderPic()}">`
+                    }
+                    
                 }
                 getPic();
                 return ele;
