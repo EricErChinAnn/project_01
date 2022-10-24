@@ -4,16 +4,81 @@ const headers = {
     Accept: 'application/json',
     Authorization: API_KEY    
 }
+
+let allMarker = L.icon({
+    iconUrl:`img/marker/gym.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let boxingMarker = L.icon({
+    iconUrl:`img/marker/boxing.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let eatsMarker = L.icon({
+    iconUrl:`img/marker/eats.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let bicycleMarker = L.icon({
+    iconUrl:`img/marker/bicycle.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let musicMarker = L.icon({
+    iconUrl:`img/marker/music.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let pilateMarker = L.icon({
+    iconUrl:`img/marker/pilate.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let climbMarker = L.icon({
+    iconUrl:`img/marker/rope.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let outdoorMarker = L.icon({
+    iconUrl:`img/marker/tree.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+let yogaMarker = L.icon({
+    iconUrl:`img/marker/yoga.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
+
 function selectedCategory(data){
 let categoriesList = {
-    "all":18021,
-    "boxing":18022,
-    "climbing":18023,
-    "cycle":18024,
-    "dance":18025,
-    "outdoor":18026,
-    "pilates":18027,
-    "yoga":18028
+    "all":[18021,allMarker],
+    "boxing":[18022,boxingMarker],
+    "climbing":[18023,climbMarker],
+    "cycle":[18024,bicycleMarker],
+    "dance":[18025,musicMarker],
+    "outdoor":[18026,outdoorMarker],
+    "pilates":[18027,pilateMarker],
+    "yoga":[18028,yogaMarker]
 }
 return categoriesList[data];
 }

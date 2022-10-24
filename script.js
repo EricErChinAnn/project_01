@@ -29,13 +29,12 @@ window.addEventListener('DOMContentLoaded', async () => {
         let inputQuery = (document.querySelector(`#inputQuery`).value).trim();
         let inputCategories = (document.querySelector(`#floatingSelect`).selectedOptions)[0].value;
         let selectedCateID = selectedCategory(inputCategories);
-        console.log(inputQuery + " " + selectedCateID);
 
         let bound = map.getBounds();
         let boundCenter = bound.getCenter();
         let boundCenterLat = boundCenter.lat;
         let boundCenterLng = boundCenter.lng;
-        let database = await search(boundCenterLat, boundCenterLng, selectedCateID, inputQuery);
+        let database = await search(boundCenterLat, boundCenterLng, selectedCateID[0], inputQuery);
 
         markerClusterLayer.clearLayers();
 
@@ -46,7 +45,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         for (let eachSearch of data) {
             let lat = eachSearch.geocodes.main.latitude;
             let lng = eachSearch.geocodes.main.longitude;
-            let searchMarker = L.marker([lat, lng]).addTo(markerClusterLayer);
+            let searchMarker = L.marker([lat, lng],{icon: (selectedCateID[1])}).addTo(markerClusterLayer);
             searchMarker.addEventListener(`click`,()=>{
                 map.flyTo([lat, lng]);
             })
