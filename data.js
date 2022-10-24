@@ -5,6 +5,13 @@ const headers = {
     Authorization: API_KEY    
 }
 
+let foodMarker = L.icon({
+    iconUrl:`img/marker/eats.png`,
+
+    iconSize: [45,50],
+    iconAnchor: [22,40],
+    popupAnchor: [0,-30]
+});
 let allMarker = L.icon({
     iconUrl:`img/marker/gym.png`,
 
@@ -14,13 +21,6 @@ let allMarker = L.icon({
 });
 let boxingMarker = L.icon({
     iconUrl:`img/marker/boxing.png`,
-
-    iconSize: [45,50],
-    iconAnchor: [22,40],
-    popupAnchor: [0,-30]
-});
-let eatsMarker = L.icon({
-    iconUrl:`img/marker/eats.png`,
 
     iconSize: [45,50],
     iconAnchor: [22,40],
@@ -83,7 +83,7 @@ let categoriesList = {
 return categoriesList[data];
 }
 
-async function search(lat, lng, categories, query="",radius="10000",limit="50") {
+async function search(lat, lng, categories, query="",radius="100000",limit="50") {
     let ll = lat + "," + lng;
     let response = await axios.get(API_BASE_URL + "search",{
         headers: headers,

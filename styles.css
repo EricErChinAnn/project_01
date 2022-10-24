@@ -8,6 +8,7 @@
     left: 50px;
     top: 10px;
     z-index: 300000;
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 #resultDisplay{

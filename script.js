@@ -24,7 +24,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     let map = initMap();
     let markerClusterLayer = L.markerClusterGroup();
     markerClusterLayer.addTo(map);
-    let foodLayer = L.layerGroup();
 
     let searchBtn = document.querySelector(`#searchBtn`).addEventListener(`click`, async () => {
         let inputQuery = (document.querySelector(`#inputQuery`).value).trim();
@@ -48,7 +47,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             let lng = eachSearch.geocodes.main.longitude;
             let searchMarker = L.marker([lat, lng],{icon: (selectedCateID[1])}).addTo(markerClusterLayer);
             searchMarker.addEventListener(`click`,()=>{
-                map.flyTo([lat, lng]);
+                map.flyTo([lat, lng],18);
             })
             searchMarker.bindPopup(() => {
                 let ele = document.createElement('div');
@@ -79,7 +78,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             clickOnHolder.innerHTML =
                 `<div class="card-body d-flex flex-row justify-content-between p-2">
                     <h5 class="card-title fs-6">${eachSearch.name}</h5>
-                    <p class="btn btn-outline-info btn-sm rounded-circle card-text">Go</p>
+                    <p class="btn btn-outline-info btn-sm card-text">Go</p>
                 </div>`;
             clickOnHolder.addEventListener(`click`,()=>{
                 map.flyTo([lat, lng], 18);
@@ -89,4 +88,57 @@ window.addEventListener('DOMContentLoaded', async () => {
             resultDisplay.appendChild(clickOnHolder);
         }
     })
+    
+    let foodLayer = L.layerGroup();
+    foodLayer.addTo(map);
+    let toggleFood = document.querySelector(`#foodBtn`);
+    toggleFood.addEventListener(`click`,async ()=>{
+        if(toggleFood.ariaPressed == "true"){
+            let bound = map.getBounds();
+            let boundCenter = bound.getCenter();
+            let boundCenterLat = boundCenter.lat;
+            let boundCenterLng = boundCenter.lng;
+            let database = await search(boundCenterLat, boundCenterLng, 13000,"","500","10");
+            let data = database.results;
+            console.log(data);
+
+            for (let eachFood of data) {
+                let lat = eachFood.geocodes.main.latitude;
+                console.log(lat);
+                let lng = eachFood.geocodes.main.longitude;
+                let searchMarker = L.marker([lat, lng],{icon:foodMarker}).addTo(foodLayer);
+                searchMarker.addEventListener(`click`,()=>{
+                    map.flyTo([lat, lng],18);
+                })
+                searchMarker.bindPopup(() => {
+                    let ele = document.createElement('div');
+                    ele.classList.add("card");
+                    ele.style.width = "18rem";
+                    ele.innerHTML += `
+                    <div class="card-body">
+                        <h5 class="card-title">${eachFood.name}</h5>
+                        <p class="card-text">${eachFood.location.formatted_address}</p>
+                    </div>`;
+                    async function getPic() {
+                        let picData = await searchPic(eachFood.fsq_id);
+                        let picURL = picData[0];
+                        if(picURL){
+                            let picURLFull = picURL.prefix + "original" + picURL.suffix;
+                            ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
+                        } else {
+                            ele.innerHTML += `<img class="card-img-top" src="img/foodWIP.png">`
+                        }
+                        
+                    }
+                    getPic();
+                    return ele;
+                })
+            }
+
+        } else {
+            foodLayer.clearLayers()
+        }
+        
+    });
+
 })
