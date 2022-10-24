@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     let map = initMap();
     let markerClusterLayer = L.markerClusterGroup();
     markerClusterLayer.addTo(map);
+    let foodLayer = L.layerGroup();
 
     let searchBtn = document.querySelector(`#searchBtn`).addEventListener(`click`, async () => {
         let inputQuery = (document.querySelector(`#inputQuery`).value).trim();
@@ -78,7 +79,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             clickOnHolder.innerHTML =
                 `<div class="card-body d-flex flex-row justify-content-between p-2">
                     <h5 class="card-title fs-6">${eachSearch.name}</h5>
-                    <p class="card-text">text</p>
+                    <p class="btn btn-outline-info btn-sm rounded-circle card-text">Go</p>
                 </div>`;
             clickOnHolder.addEventListener(`click`,()=>{
                 map.flyTo([lat, lng], 18);
@@ -88,5 +89,4 @@ window.addEventListener('DOMContentLoaded', async () => {
             resultDisplay.appendChild(clickOnHolder);
         }
     })
-
 })
