@@ -114,3 +114,8 @@ async function weatherForecast(lat,lng,weatherAPI_KEY){
     let database = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weatherAPI_KEY}`);
     return database.data;
 }
+
+async function weatherForecastIcon(iconNumber){
+    let icon = await axios.get(`https://openweathermap.org/img/wn/${iconNumber}.png`);
+    return icon;
+}

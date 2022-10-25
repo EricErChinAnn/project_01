@@ -25,6 +25,22 @@ window.addEventListener('DOMContentLoaded', async () => {
     let markerClusterLayer = L.markerClusterGroup();
     markerClusterLayer.addTo(map);
 
+    let toggleDisplay = document.querySelector(`#toggleDisplay`);
+    let btnToggle = document.querySelector(`#toggleDisplayBtn`);
+    btnToggle.addEventListener(`click`,()=>{
+        if (toggleDisplay.style.display == "none"){
+            btnToggle.textContent = "▲";
+            toggleDisplay.style.display = "block";
+            let resultDisplay = document.querySelector(`#resultDisplay`);
+            resultDisplay.style.display = "block";
+        } else {
+            btnToggle.textContent = "▼";
+            toggleDisplay.style.display = "none";
+            let resultDisplay = document.querySelector(`#resultDisplay`);
+            resultDisplay.style.display = "none";
+        }
+    })
+
     let searchBtn = document.querySelector(`#searchBtn`).addEventListener(`click`, async () => {
         let inputQuery = (document.querySelector(`#inputQuery`).value).trim();
         let inputCategories = (document.querySelector(`#floatingSelect`).selectedOptions)[0].value;
@@ -82,7 +98,11 @@ window.addEventListener('DOMContentLoaded', async () => {
                 </div>`;
             clickOnHolder.addEventListener(`click`,()=>{
                 map.flyTo([lat, lng], 18);
-                searchMarker.openPopup(); 
+                let resultDisplay = document.querySelector(`#resultDisplay`);
+                resultDisplay.style.display = "none";
+                setTimeout(() => {
+                    searchMarker.openPopup();
+                }, 3500)
             })
 
             resultDisplay.appendChild(clickOnHolder);
