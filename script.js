@@ -98,15 +98,26 @@ window.addEventListener('DOMContentLoaded', async () => {
             let boundCenter = bound.getCenter();
             let boundCenterLat = boundCenter.lat;
             let boundCenterLng = boundCenter.lng;
+            L.circle([boundCenterLat, boundCenterLng], {
+                color: 'black',
+                fillColor:"black",
+                fillOpacity:1,
+                radius: 1
+            }).addTo(foodLayer)
+            L.circle([boundCenterLat, boundCenterLng], {
+                color: 'black',
+                fillColor:"red",
+                fillOpacity:0.2,
+                radius: 500
+            }).addTo(foodLayer)
             let database = await search(boundCenterLat, boundCenterLng, 13000,"","500","10");
             let data = database.results;
-            console.log(data);
 
             for (let eachFood of data) {
                 let lat = eachFood.geocodes.main.latitude;
-                console.log(lat);
                 let lng = eachFood.geocodes.main.longitude;
                 let searchMarker = L.marker([lat, lng],{icon:foodMarker}).addTo(foodLayer);
+                
                 searchMarker.addEventListener(`click`,()=>{
                     map.flyTo([lat, lng],18);
                 })
@@ -140,5 +151,21 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
         
     });
+
+    let weatherLayer = L.layerGroup();
+    weatherLayer.addTo(map);
+    let toggleWeather = document.querySelector(`#weatherBtn`);
+    toggleWeather.addEventListener(`click`, async ()=>{
+        if (toggleWeather.ariaPressed == "true"){
+            let bound = map.getBounds();
+            let boundCenter = bound.getCenter();
+            let boundCenterLat = boundCenter.lat;
+            let boundCenterLng = boundCenter.lng;
+            let database = await weatherForecast(boundCenterLat,boundCenterLng,weatherAPI_KEY);
+            console.log(database);
+        } else {
+            weatherLayer.clearLayers()
+        }
+    })
 
 })

@@ -1,5 +1,6 @@
 const API_BASE_URL="https://api.foursquare.com/v3/places/";
-const API_KEY="fsq36vWuvzc4ASQhuuv+TktgLmcCAI4WKFykx0ewzgChlkQ="
+const API_KEY="fsq3CM63NagEqTAv1JgvG1gQJPq+g89o8J+VGpv9dzdZG3M=";
+const weatherAPI_KEY="a98a4d70a1d2cc9eca8357594caee0df";
 const headers = {
     Accept: 'application/json',
     Authorization: API_KEY    
@@ -109,3 +110,7 @@ async function searchPic(fsq_id){
     return response.data;
 }
 
+async function weatherForecast(lat,lng,weatherAPI_KEY){
+    let database = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${weatherAPI_KEY}`);
+    return database.data;
+}
