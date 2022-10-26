@@ -27,8 +27,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     let toggleDisplay = document.querySelector(`#toggleDisplay`);
     let btnToggle = document.querySelector(`#toggleDisplayBtn`);
-    btnToggle.addEventListener(`click`,()=>{
-        if (toggleDisplay.style.display == "none"){
+    btnToggle.addEventListener(`click`, () => {
+        if (toggleDisplay.style.display == "none") {
             btnToggle.textContent = "▲";
             toggleDisplay.style.display = "block";
             let resultDisplay = document.querySelector(`#resultDisplay`);
@@ -61,9 +61,9 @@ window.addEventListener('DOMContentLoaded', async () => {
         for (let eachSearch of data) {
             let lat = eachSearch.geocodes.main.latitude;
             let lng = eachSearch.geocodes.main.longitude;
-            let searchMarker = L.marker([lat, lng],{icon: (selectedCateID[1])}).addTo(markerClusterLayer);
-            searchMarker.addEventListener(`click`,()=>{
-                map.flyTo([lat, lng],18);
+            let searchMarker = L.marker([lat, lng], { icon: (selectedCateID[1]) }).addTo(markerClusterLayer);
+            searchMarker.addEventListener(`click`, () => {
+                map.flyTo([lat, lng], 18);
             })
             searchMarker.bindPopup(() => {
                 let ele = document.createElement('div');
@@ -77,13 +77,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                 async function getPic() {
                     let picData = await searchPic(eachSearch.fsq_id);
                     let picURL = picData[0];
-                    if(picURL){
+                    if (picURL) {
                         let picURLFull = picURL.prefix + "original" + picURL.suffix;
                         ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
                     } else {
                         ele.innerHTML += `<img class="card-img-top" src="${placeholderPic()}">`
                     }
-                    
+
                 }
                 getPic();
                 return ele;
@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     <h5 class="card-title fs-6">${eachSearch.name}</h5>
                     <p class="btn btn-outline-info btn-sm card-text">Go</p>
                 </div>`;
-            clickOnHolder.addEventListener(`click`,()=>{
+            clickOnHolder.addEventListener(`click`, () => {
                 map.flyTo([lat, lng], 18);
                 let resultDisplay = document.querySelector(`#resultDisplay`);
                 resultDisplay.style.display = "none";
@@ -108,38 +108,38 @@ window.addEventListener('DOMContentLoaded', async () => {
             resultDisplay.appendChild(clickOnHolder);
         }
     })
-    
+
     let foodLayer = L.layerGroup();
     foodLayer.addTo(map);
     let toggleFood = document.querySelector(`#foodBtn`);
-    toggleFood.addEventListener(`click`,async ()=>{
-        if(toggleFood.ariaPressed == "true"){
+    toggleFood.addEventListener(`click`, async () => {
+        if (toggleFood.ariaPressed == "true") {
             let bound = map.getBounds();
             let boundCenter = bound.getCenter();
             let boundCenterLat = boundCenter.lat;
             let boundCenterLng = boundCenter.lng;
             L.circle([boundCenterLat, boundCenterLng], {
                 color: 'black',
-                fillColor:"black",
-                fillOpacity:1,
+                fillColor: "black",
+                fillOpacity: 1,
                 radius: 1
             }).addTo(foodLayer)
             L.circle([boundCenterLat, boundCenterLng], {
                 color: 'black',
-                fillColor:"red",
-                fillOpacity:0.2,
+                fillColor: "red",
+                fillOpacity: 0.2,
                 radius: 500
             }).addTo(foodLayer)
-            let database = await search(boundCenterLat, boundCenterLng, 13000,"","500","10");
+            let database = await search(boundCenterLat, boundCenterLng, 13000, "", "500", "10");
             let data = database.results;
 
             for (let eachFood of data) {
                 let lat = eachFood.geocodes.main.latitude;
                 let lng = eachFood.geocodes.main.longitude;
-                let searchMarker = L.marker([lat, lng],{icon:foodMarker}).addTo(foodLayer);
-                
-                searchMarker.addEventListener(`click`,()=>{
-                    map.flyTo([lat, lng],18);
+                let searchMarker = L.marker([lat, lng], { icon: foodMarker }).addTo(foodLayer);
+
+                searchMarker.addEventListener(`click`, () => {
+                    map.flyTo([lat, lng], 18);
                 })
                 searchMarker.bindPopup(() => {
                     let ele = document.createElement('div');
@@ -153,13 +153,13 @@ window.addEventListener('DOMContentLoaded', async () => {
                     async function getPic() {
                         let picData = await searchPic(eachFood.fsq_id);
                         let picURL = picData[0];
-                        if(picURL){
+                        if (picURL) {
                             let picURLFull = picURL.prefix + "original" + picURL.suffix;
                             ele.innerHTML += `<img class="card-img-top" src="${picURLFull}">`
                         } else {
                             ele.innerHTML += `<img class="card-img-top" src="img/foodWIP.png">`
                         }
-                        
+
                     }
                     getPic();
                     return ele;
@@ -169,22 +169,38 @@ window.addEventListener('DOMContentLoaded', async () => {
         } else {
             foodLayer.clearLayers()
         }
-        
+
     });
 
     let weatherLayer = L.layerGroup();
     weatherLayer.addTo(map);
+    let weatherDisplay = document.querySelector(`#weatherDisplay`);
     let toggleWeather = document.querySelector(`#weatherBtn`);
-    toggleWeather.addEventListener(`click`, async ()=>{
-        if (toggleWeather.ariaPressed == "true"){
+    toggleWeather.addEventListener(`click`, async () => {
+        if (toggleWeather.ariaPressed == "true") {
             let bound = map.getBounds();
             let boundCenter = bound.getCenter();
             let boundCenterLat = boundCenter.lat;
             let boundCenterLng = boundCenter.lng;
-            let database = await weatherForecast(boundCenterLat,boundCenterLng,weatherAPI_KEY);
-            console.log(database);
+            let database = await weatherForecast(boundCenterLat, boundCenterLng, weatherAPI_KEY);
+            L.marker([boundCenterLat, boundCenterLng], { icon: weatherMarker }).addTo(weatherLayer);
+            let mainWeather = (database.weather[0].main).toLowerCase();
+            let weatherDisplay = document.querySelector(`#weatherDisplay`);
+            let placeholderDiv = document.createElement(`div`);
+            placeholderDiv.classList.add("card","border-0","d-flex","flex-row","justify-content-evenly","align-items-center");
+            placeholderDiv.style.backgroundColor= "rgba(255,255,255,0)";
+            placeholderDiv.innerHTML = `
+                <h1 class="fs-1 m-0">${selectedWeather(mainWeather)}</h1>
+                <div class="d-flex flex-column">
+                <h5 class="m-0 p-0">${database.weather[0].main}</h5>
+                <p class="m-0 p-0">Temp: ${kToCel(database.main.temp)}℃</p>
+                <div>
+            `
+            weatherDisplay.appendChild(placeholderDiv);
         } else {
-            weatherLayer.clearLayers()
+            weatherLayer.clearLayers();
+            weatherDisplay.innerHTML="";
+            
         }
     })
 

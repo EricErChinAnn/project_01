@@ -69,6 +69,13 @@ let yogaMarker = L.icon({
     iconAnchor: [22,40],
     popupAnchor: [0,-30]
 });
+let weatherMarker = L.icon({
+    iconUrl:`img/marker/sunrise.png`,
+
+    iconSize: [30,35],
+    iconAnchor: [15,28],
+    popupAnchor: [0,-30]
+});
 
 function selectedCategory(data){
 let categoriesList = {
@@ -84,7 +91,24 @@ let categoriesList = {
 return categoriesList[data];
 }
 
-async function search(lat, lng, categories, query="",radius="100000",limit="50") {
+function selectedWeather(data){
+    let obj = {
+        "clear sky":"☼",
+        "clear":"☼",
+        "few clouds":"🌥",
+        "clouds":"🌥",
+        "scattered clouds":"☁",
+        "broken clouds":"☁",
+        "shower rain":"🌦",
+        "rain":"🌧",
+        "thunderstorm":"⛈",
+        "snow":"❄",
+        "mist":"🌫"
+    }
+    return obj[data];
+}
+
+async function search(lat, lng, categories, query="",radius="10000",limit="50") {
     let ll = lat + "," + lng;
     let response = await axios.get(API_BASE_URL + "search",{
         headers: headers,
@@ -115,7 +139,8 @@ async function weatherForecast(lat,lng,weatherAPI_KEY){
     return database.data;
 }
 
-async function weatherForecastIcon(iconNumber){
-    let icon = await axios.get(`https://openweathermap.org/img/wn/${iconNumber}.png`);
-    return icon;
+function kToCel(num){
+    num = Number(num);
+    let returnNum = (num - 273.15).toFixed(2);
+    return returnNum;
 }
