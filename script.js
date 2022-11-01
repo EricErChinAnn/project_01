@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', async () => {
     quoteGetter();
+    loginSetUp();
 
     let map = initMap();
     let markerClusterLayer = L.markerClusterGroup();
@@ -53,6 +54,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 <div class="card-body">
                     <h5 class="card-title">${eachSearch.name}</h5>
                     <p class="card-text">${eachSearch.location.formatted_address}</p>
+                    <button class="btn btn-primary">Attend</button>
                 </div>`;
                     async function getPic() {
                         let picData = await searchPic(eachSearch.fsq_id);
@@ -87,7 +89,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                 resultDisplay.appendChild(clickOnHolder);
             }
-        } else { alert(`There is no Gym or Studio in a 10 KM radius. Please center your view to another location`) }
+        } else {
+            L.circle([boundCenterLat, boundCenterLng], {
+                color: 'green',
+                fillColor: "green",
+                fillOpacity: 0.2,
+                radius: 10000
+            }).addTo(markerClusterLayer)
+            alert(`There is no Gym or Studio in a 10 KM radius. Please center your view to another location`)
+        }
     })
 
     let foodLayer = L.layerGroup();
@@ -147,6 +157,18 @@ window.addEventListener('DOMContentLoaded', async () => {
                     })
                 }
             } else {
+                L.circle([boundCenterLat, boundCenterLng], {
+                    color: 'black',
+                    fillColor: "black",
+                    fillOpacity: 1,
+                    radius: 1
+                }).addTo(foodLayer)
+                L.circle([boundCenterLat, boundCenterLng], {
+                    color: 'black',
+                    fillColor: "red",
+                    fillOpacity: 0.2,
+                    radius: 500
+                }).addTo(foodLayer)
                 alert(`There are no diners in a 500m radius, please change your view location`);
             }
 
@@ -192,44 +214,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             weatherDisplay.innerHTML = "";
 
         }
-    })
-
-    let loginBody = document.querySelector(`#loginBody`);
-    let createBody = document.querySelector(`#createBody`);
-    let accountBody = document.querySelector(`#accountBody`);
-    let loginDisplay = document.querySelector(`#loginBtn`).addEventListener(`click`,()=>{
-        accountBody.style.display="none";
-        createBody.style.display="none";
-        loginBody.style.display="block";
-    })
-    let loginBtnInBody = document.querySelector(`#loginAccountBtn`).addEventListener(`click`,async()=>{
-        let usernameInput = document.querySelector(`#loginUsername`);
-        let passwordInput = document.querySelector(`#loginPassword`);
-        let database = (await axios.get(`login.json`)).data;
-        for (let each of database){
-            if(((each.username == usernameInput.value)&&(each.password == passwordInput.value))){
-                let loggedinBtn = document.querySelector(`#loggedinBtn`);
-                let loginBtn = document.querySelector(`#loginBtn`)
-                loggedinBtn.innerHTML=`${each.name}`;
-                loginBtn.style.display="none";
-                loggedinBtn.style.display="block";
-                createBody.style.display="none";
-                loginBody.style.display="none";
-                accountBody.style.display="block";
-                accountBody.innerHTML=`
-                    <h1>Your deeds</h1>
-                `
-                break;
-            } else {
-                alert(`Please enter a valid username and password`);
-                break;
-            }
-        }
-    })
-    let createAccountBtn = document.querySelector(`#createAccountBtn`).addEventListener(`click`,async ()=>{
-        loginBody.style.display="none";
-        accountBody.style.display="none";
-        createBody.style.display="block";
     })
 
 })

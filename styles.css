@@ -147,3 +147,13 @@
 #createBody{
     display: none;
 }
+
+#logoutAccountBtn{
+    display: none;
+}
+#newAccountBtn{
+    display: none;
+}
+#chartDiv{
+    display: none;
+}

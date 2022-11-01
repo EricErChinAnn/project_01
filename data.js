@@ -196,14 +196,201 @@ async function quoteGetter() {
     let holder = document.querySelector(`#offcanvasTop`);
     let loading = document.querySelector(`.center`);
     // setTimeout(() => {
-        holder.removeChild(loading);
-        slogan.innerHTML = `
+    holder.removeChild(loading);
+    slogan.innerHTML = `
         <div class="container d-flex justify-content-center mt-0 pt-0 animate__animated animate__fadeIn">
             <h5 id="slogan">${quotesDatabase[randomGen].text}</h5>
         </div>
         <div class="d-flex justify-content-end mt-0 pt-0 me-5 pe-5 animate__animated animate__fadeIn">
             <h5 class="justify-content-end" id="sloganBy">- ${quotesDatabase[randomGen].author}</h5>
         </div>`;
-        holder.appendChild(slogan);
+    holder.appendChild(slogan);
     // }, 1000)
+}
+async function loginSetUp(){
+    let loginBody = document.querySelector(`#loginBody`);
+    let createBody = document.querySelector(`#createBody`);
+    let accountBody = document.querySelector(`#accountBody`);
+    let chartBody = document.querySelector(`#chartDiv`);
+    let logoutAccountBtn = document.querySelector(`#logoutAccountBtn`);
+    let loginAccountBtn = document.querySelector(`#loginAccountBtn`);
+    let createAccountBtn = document.querySelector(`#createAccountBtn`);
+    let newAccountBtn = document.querySelector(`#newAccountBtn`);
+    let loggedinBtn = document.querySelector(`#loggedinBtn`);
+    let loginBtn = document.querySelector(`#loginBtn`)
+    loginBtn.addEventListener(`click`, () => {
+        accountBody.style.display = "none";
+        createBody.style.display = "none";
+        loginBody.style.display = "block";
+        createAccountBtn.style.display = "block";
+        newAccountBtn.style.display = "none";
+        loginAccountBtn.style.display = "block";
+        logoutAccountBtn.style.display = "none";
+    })
+    loginAccountBtn.addEventListener(`click`, async () => {
+        let usernameInput = document.querySelector(`#loginUsername`);
+        let passwordInput = document.querySelector(`#loginPassword`);
+        let database = (await axios.get(`login.json`)).data;
+        for (let each of database) {
+            if (((each.username == usernameInput.value) && (each.password == passwordInput.value))) {
+                loggedinBtn.innerHTML = `${each.name}`;
+                loginBtn.style.display = "none";
+                loggedinBtn.style.display = "block";
+                createBody.style.display = "none";
+                loginBody.style.display = "none";
+                accountBody.style.display = "block";
+                logoutAccountBtn.style.display = "block";
+                loginAccountBtn.style.display = "none";
+                createAccountBtn.style.display = "none";
+                chartBody.style.display = "block";
+                const options =  {
+                    chart: {
+                        type: 'bar',
+                        height:"100%"
+                    },
+                    xaxis: {
+                        categories:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct','Nov','Dec']
+                    },
+                    series:each.attended,
+                    
+                }
+                const chart = new ApexCharts(document.querySelector('#chart'), options);
+                chart.render()
+                accountBody.innerHTML = `
+                    <label>Name:</label>
+                    <label>${each.name}</label>
+                <ul class="list-group list-group-horizontal-xxl">
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Weight(KG):</span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${each.weight}</label>
+                    </div>
+                    </li>
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Height(M):</span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${each.height}</label>
+                    </div>
+                    </li>
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">BMI: </span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${(each.weight / (each.height * each.height)).toFixed(2)}</label>
+                    </div>
+                    </li>
+                </ul>
+                `
+                break;
+            } else {
+                alert(`Please enter a valid username and password`);
+                break;
+            }
+        }
+    })
+    logoutAccountBtn.addEventListener(`click`, () => {
+        loginBody.style.display = "block";
+        createBody.style.display = "none";
+        accountBody.style.display = "none";
+        logoutAccountBtn.style.display = "none";
+        loginAccountBtn.style.display = "block";
+        createAccountBtn.style.display = "block";
+        loggedinBtn.style.display = "none";
+        loginBtn.style.display = "block";
+        chartBody.style.display = "none";
+        let usernameInput = document.querySelector(`#loginUsername`);
+        let passwordInput = document.querySelector(`#loginPassword`);
+        usernameInput.value = "";
+        passwordInput.value = "";
+    })
+    createAccountBtn.addEventListener(`click`, () => {
+        loginBody.style.display = "none";
+        createBody.style.display = "block";
+        accountBody.style.display = "none";
+        logoutAccountBtn.style.display = "none";
+        loginAccountBtn.style.display = "none";
+        createAccountBtn.style.display = "none";
+        newAccountBtn.style.display = "block";
+        loggedinBtn.style.display = "none";
+        loginBtn.style.display = "block";
+    })
+    newAccountBtn.addEventListener(`click`, async () => {
+        let newUsername = document.querySelector(`#createUsername`);
+        let newPassword = document.querySelector(`#createPassword`);
+        let newHeight = document.querySelector(`#createHeight`);
+        let newWeight = document.querySelector(`#createWeight`);
+        let newName = document.querySelector(`#createName`);
+
+        if (newUsername.value && newPassword.value && newHeight.value && newWeight.value && newName.value) {
+            loginBtn.style.display = "none";
+            newAccountBtn.style.display = "none";
+            loggedinBtn.style.display = "block";
+            loggedinBtn.innerHTML = `${newName.value}`;
+            createBody.style.display = "none";
+            loginBody.style.display = "none";
+            accountBody.style.display = "block";
+            logoutAccountBtn.style.display = "block";
+            loginAccountBtn.style.display = "none";
+            createAccountBtn.style.display = "none";
+            chartBody.style.display = "block";
+            const options =  {
+                chart: {
+                    type: 'bar',
+                    height:"100%"
+                },
+                xaxis: {
+                    categories:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct','Nov','Dec']
+                },
+                series:[],
+                
+            }
+            const chart = new ApexCharts(document.querySelector('#chart'), options);
+            chart.render();
+            accountBody.innerHTML = `
+                    <label>Name:</label>    
+                    <label>${newName.value}</label>
+                <ul class="list-group list-group-horizontal-xxl">
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Weight(KG):</span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${Number(newWeight.value)}</label>
+                    </div>
+                    </li>
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Height(M):</span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${Number(newHeight.value)}</label>
+                    </div>
+                    </li>
+                    <li class="list-group-item">
+                    <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">BMI: </span>
+                    <label class="form-control" aria-describedby="addon-wrapping">${(Number(newWeight.value) / (Number(newHeight.value) * Number(newHeight.value))).toFixed(2)}</label>
+                    </div>
+                    </li>
+                </ul>
+                `
+            let objTemp = {
+                "username": newUsername.value,
+                "password": newPassword.value,
+                "name": newName.value,
+                "height": Number(newHeight.value),
+                "weight": Number(newWeight.value),
+                "attended":[]
+            }
+            let database = (await axios.get(`login.json`)).data;
+            database.push(objTemp);
+            newUsername.value = "";
+            newPassword.value = "";
+            newName.value = "";
+            newHeight.value = "";
+            newWeight.value = "";
+        } else {
+            newUsername.value = "";
+            newPassword.value = "";
+            newName.value = "";
+            newHeight.value = "";
+            newWeight.value = "";
+            alert(`Please enter a valid Informations`);
+        }
+    })
 }
