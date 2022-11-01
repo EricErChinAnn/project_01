@@ -1,0 +1,16 @@
+[
+    {
+        "username":"admin1",
+        "password":"admin123",
+        "name":"Admin_Boy",
+        "height":1.8,
+        "weight":50.5
+    },
+    {
+        "username":"admin2",
+        "password":"admin234",
+        "name":"Admin_Girl",
+        "height":1.6,
+        "weight":58.8
+    }
+]

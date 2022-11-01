@@ -168,6 +168,12 @@ window.addEventListener('DOMContentLoaded', async () => {
             let boundCenterLng = boundCenter.lng;
             let database = await weatherForecast(boundCenterLat, boundCenterLng, weatherAPI_KEY);
             L.marker([boundCenterLat, boundCenterLng], { icon: weatherMarker }).addTo(weatherLayer);
+            L.circle([boundCenterLat, boundCenterLng], {
+                color: 'blue',
+                fillColor: "blue",
+                fillOpacity: 0.1,
+                radius: 3500
+            }).addTo(weatherLayer);
             let mainWeather = (database.weather[0].main).toLowerCase();
             let weatherDisplay = document.querySelector(`#weatherDisplay`);
             let placeholderDiv = document.createElement(`div`);
@@ -186,6 +192,44 @@ window.addEventListener('DOMContentLoaded', async () => {
             weatherDisplay.innerHTML = "";
 
         }
+    })
+
+    let loginBody = document.querySelector(`#loginBody`);
+    let createBody = document.querySelector(`#createBody`);
+    let accountBody = document.querySelector(`#accountBody`);
+    let loginDisplay = document.querySelector(`#loginBtn`).addEventListener(`click`,()=>{
+        accountBody.style.display="none";
+        createBody.style.display="none";
+        loginBody.style.display="block";
+    })
+    let loginBtnInBody = document.querySelector(`#loginAccountBtn`).addEventListener(`click`,async()=>{
+        let usernameInput = document.querySelector(`#loginUsername`);
+        let passwordInput = document.querySelector(`#loginPassword`);
+        let database = (await axios.get(`login.json`)).data;
+        for (let each of database){
+            if(((each.username == usernameInput.value)&&(each.password == passwordInput.value))){
+                let loggedinBtn = document.querySelector(`#loggedinBtn`);
+                let loginBtn = document.querySelector(`#loginBtn`)
+                loggedinBtn.innerHTML=`${each.name}`;
+                loginBtn.style.display="none";
+                loggedinBtn.style.display="block";
+                createBody.style.display="none";
+                loginBody.style.display="none";
+                accountBody.style.display="block";
+                accountBody.innerHTML=`
+                    <h1>Your deeds</h1>
+                `
+                break;
+            } else {
+                alert(`Please enter a valid username and password`);
+                break;
+            }
+        }
+    })
+    let createAccountBtn = document.querySelector(`#createAccountBtn`).addEventListener(`click`,async ()=>{
+        loginBody.style.display="none";
+        accountBody.style.display="none";
+        createBody.style.display="block";
     })
 
 })

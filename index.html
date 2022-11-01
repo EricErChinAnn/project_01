@@ -38,7 +38,6 @@
             <div class="wave"></div>
         </div>
     </div>
-
     <div id="map">
     </div>
     <div class="container rounded" id="searchInput" style="width:18rem">
@@ -64,13 +63,58 @@
             <div class="d-flex justify-content-around">
                 <button class="btn btn-outline-success p-1 m-0 mb-2 rounded-circle fs-3" id="foodBtn"
                     data-bs-toggle="button">🍜</button>
-                <button class="btn btn-outline-success p-1 m-0 mb-2 rounded-circle fs-3" id="transportBtn"
-                    data-bs-toggle="button">🚊</button>
                 <button class="btn btn-outline-success p-1 m-0 mb-2 rounded-circle fs-3" id="weatherBtn"
                     data-bs-toggle="button">⛅</button>
             </div>
             <div id="weatherDisplay" class="mb-2"></div>
             <div id="resultDisplay" class="mb-3"></div>
+        </div>
+    </div>
+    <div>
+        <button type="button" id="loginBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Login
+        </button>
+        <button type="button" id="loggedinBtn" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Login/Create Account</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="loginBody">
+                            <label>Username: </label>
+                            <input id="loginUsername" type="text" class="form-control mb-2">
+
+                            <label>Password: </label>
+                            <input id="loginPassword" type="password" class="form-control mb-2">
+                        </div>
+                        <div id="createBody">
+                            <label>Enter Username: </label>
+                            <input id="createUsername" type="text" class="form-control mb-2">
+
+                            <label>Enter Password: </label>
+                            <input id="createPassword" type="password" class="form-control mb-2">
+
+                            <label id="createRePassword">Reenter Password: </label>
+                            <input type="password" class="form-control mb-2">
+
+                            <label id="createHeight">Your Height: </label>
+                            <input type="text" class="form-control mb-2">
+
+                            <label id="createWeight">Your Weight: </label>
+                            <input type="text" class="form-control mb-2">
+                        </div>
+                        <div id="accountBody"></div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-around">
+                        <button type="button" class="btn btn-primary" id="createAccountBtn">Create Account</button>
+                        <button type="button" class="btn btn-primary" id="loginAccountBtn" >Login</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -168,14 +168,14 @@ function initMap() {
     })
 
     let map = L.map('map', {
-        layers: [roadView, transitView, simpleView],
+        layers: [simpleView],
         position: 'bottomright'
     }).setView(singapore, 12);
 
     var baseMaps = {
-        "Road": roadView,
+        "Simple": simpleView,
         "Detailed": transitView,
-        "Simple": simpleView
+        "Road": roadView
     };
 
     let layerControl = L.control.layers(baseMaps, {}, { position: 'bottomright' }).addTo(map);
@@ -195,13 +195,15 @@ async function quoteGetter() {
     let slogan = document.createElement("div");
     let holder = document.querySelector(`#offcanvasTop`);
     let loading = document.querySelector(`.center`);
-    holder.removeChild(loading);
-    slogan.innerHTML = `
+    // setTimeout(() => {
+        holder.removeChild(loading);
+        slogan.innerHTML = `
         <div class="container d-flex justify-content-center mt-0 pt-0 animate__animated animate__fadeIn">
             <h5 id="slogan">${quotesDatabase[randomGen].text}</h5>
         </div>
         <div class="d-flex justify-content-end mt-0 pt-0 me-5 pe-5 animate__animated animate__fadeIn">
             <h5 class="justify-content-end" id="sloganBy">- ${quotesDatabase[randomGen].author}</h5>
         </div>`;
-    holder.appendChild(slogan);
+        holder.appendChild(slogan);
+    // }, 1000)
 }
