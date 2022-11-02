@@ -68,6 +68,18 @@ window.addEventListener('DOMContentLoaded', async () => {
 
                     }
                     getPic();
+                    async function getReviews() {
+                        let reviewData = await searchReviews(eachSearch.fsq_id);
+                        if(!(reviewData[0]==undefined)){
+                            let numberOfReview = reviewData.length
+                            let randomNum = Math.floor(Math.random() * (numberOfReview-1));
+                            ele.innerHTML += `
+                                <h5 class="card-title m-0 mt-2 px-2">Reviews</h5>
+                                <p class="card-text m-0 p-2">${reviewData[randomNum].text}</p>
+                        `;
+                        }
+                    }
+                    setTimeout(()=>{getReviews()}, 3000);
                     return ele;
                 })
 
@@ -84,7 +96,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                     resultDisplay.style.display = "none";
                     setTimeout(() => {
                         searchMarker.openPopup();
-                    }, 3500)
+                    }, 4000)
                 })
 
                 resultDisplay.appendChild(clickOnHolder);

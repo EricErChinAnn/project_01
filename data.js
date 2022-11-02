@@ -128,6 +128,18 @@ async function searchPic(fsq_id) {
     let response = await axios.get(API_BASE_URL + fsq_id + "/photos", {
         "headers": headers,
         params: {
+            'fsq_id': fsq_id,
+            "limit": 3
+        }
+    });
+    return response.data;
+}
+
+
+async function searchReviews(fsq_id) {
+    let response = await axios.get(API_BASE_URL + fsq_id + "/tips", {
+        "headers": headers,
+        params: {
             'fsq_id': fsq_id
         }
     });
