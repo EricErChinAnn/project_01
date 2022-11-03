@@ -10,7 +10,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">UI/UX</a>
+      <a href="#UI/UX">UI/UX</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
