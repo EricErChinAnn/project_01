@@ -2,6 +2,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     quoteGetter();
     loginSetUp();
 
+    document.querySelector(`#logo`).addEventListener(`click`,()=>{location.reload()})
+
     let map = initMap();
     let markerClusterLayer = L.markerClusterGroup();
     markerClusterLayer.addTo(map);
@@ -216,8 +218,8 @@ window.addEventListener('DOMContentLoaded', async () => {
             placeholderDiv.innerHTML = `
                 <h1 class="fs-1 m-0">${selectedWeather(mainWeather)}</h1>
                 <div class="d-flex flex-column">
-                <h5 class="m-0 p-0">${database.weather[0].main}</h5>
-                <p class="m-0 p-0">Temp: ${kToCel(database.main.temp)}℃</p>
+                <h5 class="m-0 p-0 text-warning">${database.weather[0].main}</h5>
+                <p class="m-0 p-0 text-warning">Temp: ${kToCel(database.main.temp)}℃</p>
                 <div>
             `
             weatherDisplay.appendChild(placeholderDiv);
