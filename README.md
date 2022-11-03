@@ -39,28 +39,28 @@ On the landing page, the user will be greeted with motivational quote before pro
 
 ## Features
 
-- [1] Search
+- [ ] Search
 * User can interact with text input and the dropdown list for define their search. 
 * Search results of nearby Gym & Studio within 10km radius and display markers for each.
- * Show image and reviews (if any) about selected marker as a popup. 
- <br><br>
+* Show image and reviews (if any) about selected marker as a popup. 
+<br><br>
 
 
-- [2] Food Search
-    * Search for food center within a 500m radius (shown on map) of the selected location.
-    * Display map markers of food center found.
-    * Popup to display infomation and image of food center
-     <br><br>
+- [ ] Food Search
+* Search for food center within a 500m radius (shown on map) of the selected location.
+* Display map markers of food center found.
+* Popup to display infomation and image of food center
+<br><br>
 
-- [3] Weather Display
-    * Display a 2 hourly real-time track of the current weather of a location.
-    * Weather will be accurate within a 3km radius (shown on map).
-     <br><br>
+- [ ] Weather Display
+* Display a 2 hourly real-time track of the current weather of a location.
+* Weather will be accurate within a 3km radius (shown on map).
+<br><br>
 
-- [4] Health Tracking
-    * User can login to have a more personalized experience.
-    * Training schedule can be track to provide better pre-workout planning.
-    * A easy to understand visual display.
-     <br><br>
+- [ ] Health Tracking
+* User can login to have a more personalized experience.
+* Training schedule can be track to provide better pre-workout planning.
+* A easy to understand visual display.
+<br><br>
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
