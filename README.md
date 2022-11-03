@@ -10,7 +10,7 @@
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">UI/UX</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
@@ -34,7 +34,6 @@ The demo of the live website can be accessed here:
 <p align="right">(<a href="#readme-top"> Top </a>)</p>
 
 ## Built With
-
 * Visual Studio Code (html,css,js files)
 * Leaflet
 * Bootstrap
@@ -44,4 +43,14 @@ The demo of the live website can be accessed here:
 <p align="right">(<a href="#readme-top"> Top </a>)</p>
 
 
-# UI/UXThe aim of the 
+# UI/UX
+The aim of the this application is to create a simple and easy to use and understand layout.
+
+- [ ] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+    - [ ] Nested Feature
+
+    sldkfsjdlfkjsldfjsd
+    sdfslkdjfsldkjf
+    sldkfjsldkfj
