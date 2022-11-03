@@ -38,20 +38,9 @@ Our target audience are people age between 21 to 50, which can be further broken
 *  *Silver Age* ( 31 - 40 )
 * *Golden Age* ( 41 - 50 )
 
-We are also welcoming both **veterans** and **new gym-goers** alike. To help user attend a healthier lifestyle by and giving them a little push for 
+We are also targeting both **veterans** and **new gym-goers** alike. To help user obtain a healthier lifestyle. 
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
-
-## Built With
-* Visual Studio Code (html,css,js files)
-* Leaflet
-* Bootstrap
-* Animate.CSS
-* ApexCharts
-* Figma
-* CLIP STUDIO PAINT
-<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
-
 
 ## UI and UX
 The aim of the this application is to create a simple and easy to use and understand layout.
@@ -60,28 +49,59 @@ On the landing page, the user will be greeted with motivational quote before pro
 
 ## Features
 
-- [ ] Search
-* User can interact with text input and the dropdown list for define their search. 
-* Search results of nearby Gym & Studio within 10km radius and display markers for each.
-* Show image and reviews (if any) about selected marker as a popup. 
+- [x] Search
+    * User can interact with text input and the dropdown list for define their search. 
+    * Search results of nearby Gym & Studio within 10km radius and display markers for each.
+    * Show image and reviews (if any) about selected marker as a popup. 
 <br><br>
 
 
-- [ ] Food Search
-* Search for food center within a 500m radius (shown on map) of the selected location.
-* Display map markers of food center found.
-* Popup to display infomation and image of food center
+- [x] Food Search
+    * Search for food center within a 500m radius (shown on map) of the selected location.
+    * Display map markers of food center found.
+    * Popup to display infomation and image of food center
 <br><br>
 
-- [ ] Weather Display
-* Display a 2 hourly real-time track of the current weather of a location.
-* Weather will be accurate within a 3km radius (shown on map).
+- [x] Weather Display
+    * Display a 2 hourly real-time track of the current weather of a location.
+    * Weather will be accurate within a 3km radius (shown on map).
 <br><br>
 
-- [ ] Health Tracking
-* User can login to have a more personalized experience.
-* Training schedule can be track to provide better pre-workout planning.
-* A easy to understand visual display.
+- [x] Personal Health Tracking
+    * User can login or create a new account to have a more personalized experience.
+    * Training schedule can be track to provide better pre-workout planning.
+    * A easy to understand visual display using charts.
 <br><br>
+
+- [ ] Auto Pathing 
+    * Show user the way to get to the location they want
+    * Choice of transportation eg. Walking, Public Transport or Personal Vehicles
+<br><br>
+    
+- [ ] GPS Location Tracking
+    * Allow user to use their own location 
+    * Provide a more accurate search and pathing results
+<br><br>
+
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
+
+## Built With
+* Visual Studio Code (html,css,js files)
+    - A free and easy to use coding programme for beginners
+
+* Leaflet
+    - Well written documentation and multiple videos tutorials regarding the use of their map add-ons
+
+* Bootstrap
+    - Designed to enable responsive development of mobile-first websites
+
+* Animate.CSS
+    - Easy way to make web pages more dynamic and engaging
+
+* ApexCharts
+    - Enable creation beautiful and interactive visualizations of data
+
+* CLIP STUDIO PAINT
+    - Selections of varying feature create by the software and users
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
