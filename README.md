@@ -136,7 +136,16 @@ On the landing page, the user will be greeted with randomly generated motivation
     - Well written documentation and multiple videos tutorials regarding the use of their map add-ons
 <br/><br/>
 
-* [Bootstrap](https://getbootstrap.com/)
+* [Axios](https://axios-http.com/docs/intro)
+    - Ability to intercept HTTP requests. 
+<br/><br/>
+
+* API Used
+    - [FourSquare](https://location.foursquare.com/developer/)
+    - [OpenWeather](https://openweathermap.org/)
+<br/><br/>
+
+* [Bootstrap 5](https://getbootstrap.com/)
     - Designed to enable responsive development of mobile-first websites
 <br/><br/>
 
@@ -155,7 +164,8 @@ On the landing page, the user will be greeted with randomly generated motivation
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## Testing
-
+|Test Case|Steps|Results|
+|Loading of Webpage|<ol><li>Go to "https://ericerchinann.github.io/project_01/"</li></ol>|<ol><li>The website should load without issue</li><li>For slower internet user, A loading bar will appear while it loads</li></ol>|
 
 
 
