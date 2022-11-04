@@ -45,16 +45,20 @@ We are also targeting both **veterans** and **new gym-goers** alike. To help use
 ## UI and UX
 The aim of the this application is to create a simple and easy to use and understand layout.
 
-On the landing page, the user will be greeted with motivational quote before proceeding to the map.
+![HealthMAX on different devices](img/readme/device_home.png)
+On the landing page, the user will be greeted with randomly generated motivational quote before proceeding to the map. There will also be a loading bar for user's with slower internet ( Shown above on the tablet device )
+
+## Colors
 
 ## Features
+
+![HealthMAX on different devices](img/readme/device_used.png)
 
 - [x] Search
     * User can interact with text input and the dropdown list for define their search. 
     * Search results of nearby Gym & Studio within 10km radius and display markers for each.
     * Show image and reviews (if any) about selected marker as a popup. 
 <br><br>
-
 
 - [x] Food Search
     * Search for food center within a 500m radius (shown on map) of the selected location.
