@@ -1,5 +1,4 @@
 # HealthMAX
-<details>
   <summary>Table of Contents</summary>
   <ol>
     <li>
@@ -27,8 +26,6 @@
         <li><a href="#testing">Testing</a></li>
         <li><a href="#credits">Credits</a></li>
   </ol>
-</details>
-<br/>
 
 ![Logo of HealthMAX](img/icon/HealthMAX.png)
 
