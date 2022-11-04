@@ -1,4 +1,4 @@
-## HealthMAX
+# HealthMAX
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -7,13 +7,28 @@
       <ul>
         <li><a href="#goals">Goals</a></li>
         <li><a href="#target-audience">Target audience</a></li>
-        <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li><a href="#ui-and-ux">UI and UX</a></li>
-    <li><a href="#features">Features</a></li>
+    <li>
+    <a href="#ui-and-ux">UI and UX</a>
+    <ul>
+        <li><a href="#design">Design</a></li>
+        <li><a href="#wireframe">Wireframe</a></li>
+    </ul>
+    </li>
+        <li>
+        <a href="#features">Features</a>
+        <ul>
+        <li><a href="#wireframe">Wireframe</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        </ul>
+        </li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#testing">Testing</a></li>
+        <li><a href="#credits">Credits</a></li>
   </ol>
 </details>
+<br/>
 
 ![Logo of HealthMAX](img/icon/HealthMAX.png)
 
@@ -26,10 +41,20 @@ The demo of the live website can be accessed here:
 [HealthMax](https://ericerchinann.github.io/project_01/)
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
-## Goals
-Mental and physical health have become more of an issue of importance, one of the few contermeasures are being physically active and joining communities. 
+## Goals 
+### Organization's goals
+ Mental and physical health have become more of an issue of importance, one of the few contermeasures are being physically active and joining communities. Our organization's goals are to help ease and assist users to find a suitable active community and encourage community growth and empowerment. 
+### User's goals
+Our target audience seek a community to stay active and self-improvement. More often then not is it hard take the first step in the search.
 
-Our target audience seek a community to stay active and self-improvement. More often then not is it hard take the first step in the search. Our organization's goals are to help ease and assist users to find a suitable community and encourage community growth and empowerment. 
+Below are some user stories:
+| User Stories | Accceptance Criteria |
+| ----------- | ----------- |
+| A new gym-goer want to find a Gym or Studio near-by their workplace or home | User can search in a location on the map and result will be shown based on given location up to 10km|
+| Veterans want to try out a different workout activity that they might not have tried or known| A dropdown list is avaliable for user to further narrow down their search to a type of Gym or Studio eg. Climbing Gym, Boxing Gym, etc.|
+| After a workout, user often feels hungry and wish to find a near-by food center.| Application allow user to locate near-by food center within a 500m radius around the selected gym.|
+| User want to know the weather in a selected location| Weather can be track real time on a 2 hourly update with accuracy within a 3km radius|
+
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## Target audience
@@ -43,69 +68,107 @@ We are also targeting both **veterans** and **new gym-goers** alike. To help use
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## UI and UX
-The aim of the this application is to create a simple and easy to use and understand layout.
+The aim of the this application is to create a simple and easy to use and understand layout. Forming a theme and developing a wireframe.
 
+## Design
+### Colors
+![Color choices used](img/readme/Colors.png)
+| Color Hex | Feeling it give off |
+| ----------- | ----------- |
+| #f9da36 ( Yellow ) | Excitement, Enthusiasm, Confidence |
+| #f7ae3e ( Orange )| Happy, Motivated, Uplifting |
+| #424242 ( Grey )| Neutrality, Balance, Solid, Stable |
+| #1e1e1e ( Black )| Sophisticate, Professionalism, Powerful, Luxury, Elegance |
+
+We decided to use an gradient of yellow and orange, grey and black. Not only do they make otherwise flat and solid colors more vibrant and exciting to look at, but they're useful for focusing attention, improving engagement and modern feel to it.
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
+
+## Wireframe
+![Wireframe of the alpha version ](img/readme/wireframes.jpg)
+The deployed site have gone through multiple iterations and improvements. Many changes have been made compared to the alpha version of the application. 
+
+### Changes
+1. Application have unified theme
+2. There is a different landing page
+3. Login page have been changed from a page to small offcanvas
+4. Added a dropdown list to narrow down the search result
+5. Added 2 buttons to the search bar for additional service of the application
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
+
+## Features
 ![HealthMAX on different devices](img/readme/device_home.png)
 On the landing page, the user will be greeted with randomly generated motivational quote before proceeding to the map. There will also be a loading bar for user's with slower internet ( Shown above on the tablet device )
 
-## Colors
-
-## Features
-
 ![HealthMAX on different devices](img/readme/device_used.png)
 
-- [x] Search
-    * User can interact with text input and the dropdown list for define their search. 
-    * Search results of nearby Gym & Studio within 10km radius and display markers for each.
-    * Show image and reviews (if any) about selected marker as a popup. 
-<br><br>
+| Features | Status | Description |
+| --- | --- | ---- |
+| Search | DONE | User can interact with text input and the dropdown list for define their search. Results of nearby Gym & Studio within 10km radius will display as markers on the map. Show image and reviews (if any) about selected marker as a popup.|
+| Food Center Locator | DONE | Search for food center within a 500m radius (shown on map) of the selected location as map markers. Map popup to display infomation and image of food center |
+| Weather Display | DONE | Display a 2 hourly real-time track of the current weather of a location with and accuracy within a 3km radius (shown on map) |
+| Personal Health Tracking | WIP | User can login or create a new account to have a more personalized experience. Training schedule can be track to provide better pre-workout planning. A easy to understand visual display using charts. |
+| Auto Pathing | NOT IMPLEMENTED | Show user the way to get to the location they want using their preferred choice of transportation eg. Walking, Public Transport or Personal Vehicles |
+| GPS Location Tracking | NOT IMPLEMENTED | Allow user to use their own location to provide a more accurate search and pathing results |
 
-- [x] Food Search
-    * Search for food center within a 500m radius (shown on map) of the selected location.
-    * Display map markers of food center found.
-    * Popup to display infomation and image of food center
-<br><br>
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
-- [x] Weather Display
-    * Display a 2 hourly real-time track of the current weather of a location.
-    * Weather will be accurate within a 3km radius (shown on map).
-<br><br>
+## Limitations
+1. Collection of private data
+    * To personalized health tracking, private data will be collected. Without a back-end such collection of data will be prone to leaks
+<br/><br/>
 
-- [x] Personal Health Tracking
-    * User can login or create a new account to have a more personalized experience.
-    * Training schedule can be track to provide better pre-workout planning.
-    * A easy to understand visual display using charts.
-<br><br>
+2. Editing the accounts details 
+    * Being a front-end only web application, there is not back-end database so store the informations
+<br/><br/>
 
-- [ ] Auto Pathing 
-    * Show user the way to get to the location they want
-    * Choice of transportation eg. Walking, Public Transport or Personal Vehicles
-<br><br>
-    
-- [ ] GPS Location Tracking
-    * Allow user to use their own location 
-    * Provide a more accurate search and pathing results
-<br><br>
+3. Allow Auto Pathing
+    * Due to time limitation, this was not implemented.
+    * However user can change how the map look to allow a more navigatable and infomative map to assist in transit be it by public transport or by personal vehicles
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## Built With
-* Visual Studio Code (html,css,js files)
+* [Visual Studio Code](https://code.visualstudio.com/) ( HTML, CSS, Javascript )
     - A free and easy to use coding programme for beginners
+<br/><br/>
 
-* Leaflet
+* [Leaflet](https://leafletjs.com/)
     - Well written documentation and multiple videos tutorials regarding the use of their map add-ons
+<br/><br/>
 
-* Bootstrap
+* [Bootstrap](https://getbootstrap.com/)
     - Designed to enable responsive development of mobile-first websites
+<br/><br/>
 
-* Animate.CSS
+* [Animate.CSS](https://animate.style/)
     - Easy way to make web pages more dynamic and engaging
+<br/><br/>
 
-* ApexCharts
+* [ApexCharts](https://apexcharts.com/)
     - Enable creation beautiful and interactive visualizations of data
+<br/><br/>
 
-* CLIP STUDIO PAINT
+* [CLIP STUDIO PAINT](https://www.clipstudio.net/)
     - Selections of varying feature create by the software and users
+<br/><br/>
+
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
+
+## Testing
+
+
+
+
+## Credits
+### Logo
+* By Eric using [CLIP STUDIO PAINT](https://www.clipstudio.net/)
+<br/><br/>
+
+### Map Marker
+* By juicy_fish posted on [flaticon](https://www.flaticon.com/packs/location-pins-22)
+<br/><br/>
+
+### Different Device Display Demo
+* [CreateMockUp](https://www.createmockup.com/generate/)
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
