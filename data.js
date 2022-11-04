@@ -180,14 +180,14 @@ function initMap() {
     })
 
     let map = L.map('map', {
-        layers: [simpleView],
+        layers: [roadView],
         position: 'bottomright'
     }).setView(singapore, 12);
 
     var baseMaps = {
-        "Simple": simpleView,
+        "Road": roadView,
         "Detailed": transitView,
-        "Road": roadView
+        "Simple": simpleView
     };
 
     let layerControl = L.control.layers(baseMaps, {}, { position: 'bottomright' }).addTo(map);
