@@ -35,7 +35,7 @@
 ## About the Project
 As Singaporean become more and more health-conscious. The number of people wanting to be more active have been increasing over the years, especially after the COVID-19 pandamic (2020). Thus this concept of a Gym & Studio finder application was birthed to help assist both veterans and new gym-goers. 
 
-This application will benefit new gym-goers by showing them the near-by Gym & Studio with the reviews by actual public. On top of that it shows the food center near the selected gym and the weather. For the vetarans it also provide them with a health tracker system for better self-accessment.
+This application will benefit new gym-goers by showing them the near-by Gym & Studio with the reviews by actual public. On top of that it shows the food centre near the selected gym and the weather. For the vetarans it also provide them with a health tracker system for better self-accessment.
 
 The demo of the live website can be accessed here:
 [HealthMax](https://ericerchinann.github.io/project_01/)
@@ -52,7 +52,7 @@ Below are some user stories:
 | ----------- | ----------- |
 | A new gym-goer want to find a Gym or Studio near-by their workplace or home | User can search in a location on the map and result will be shown based on given location up to 10km|
 | Veterans want to try out a different workout activity that they might not have tried or known| A dropdown list is avaliable for user to further narrow down their search to a type of Gym or Studio eg. Climbing Gym, Boxing Gym, etc.|
-| After a workout, user often feels hungry and wish to find a near-by food center.| Application allow user to locate near-by food center within a 500m radius around the selected gym.|
+| After a workout, user often feels hungry and wish to find a near-by food centre.| Application allow user to locate near-by food centre within a 500m radius around the selected gym.|
 | User want to know the weather in a selected location| Weather can be track real time on a 2 hourly update with accuracy within a 3km radius|
 
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
@@ -104,7 +104,7 @@ On the landing page, the user will be greeted with randomly generated motivation
 | Features | Status | Description |
 | --- | --- | ---- |
 | Search | DONE | User can interact with text input and the dropdown list for define their search. Results of nearby Gym & Studio within 10km radius will display as markers on the map. Show image and reviews (if any) about selected marker as a popup.|
-| Food Center Locator | DONE | Search for food center within a 500m radius (shown on map) of the selected location as map markers. Map popup to display infomation and image of food center |
+| Food Centre Locator | DONE | Search for food centre within a 500m radius (shown on map) of the selected location as map markers. Map popup to display infomation and image of food centre |
 | Weather Display | DONE | Display a 2 hourly real-time track of the current weather of a location with and accuracy within a 3km radius (shown on map) |
 | Personal Health Tracking | WIP | User can login or create a new account to have a more personalized experience. Training schedule can be track to provide better pre-workout planning. A easy to understand visual display using charts. |
 | Auto Pathing | NOT IMPLEMENTED | Show user the way to get to the location they want using their preferred choice of transportation eg. Walking, Public Transport or Personal Vehicles |
@@ -164,14 +164,39 @@ On the landing page, the user will be greeted with randomly generated motivation
 <p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## Testing
+### Test Account
+* username: admin1
+* paswword: admin123
+<br/><br/>
+
+* username: admin2
+* paswword: admin234
+<br/><br/>
+
+<details>
+<summary>Show Test Cases</summary>
+
 |Test Case|Steps|Results|
-|Loading of Webpage|<ol><li>Go to "https://ericerchinann.github.io/project_01/"</li></ol>|<ol><li>The website should load without issue</li><li>For slower internet user, A loading bar will appear while it loads</li></ol>|
+|---|---|---|
+|Loading of Webpage|<ol><li>Go to [HealthMax](https://ericerchinann.github.io/project_01/)</li></ol>|<ol><li>The website should load without issue</li><li>For slower internet user, A loading bar will appear while it loads</li></ol>|
+|Go to Map page|<ol><li>Land on the website landing page</li><li>Wait for loading bar ( if any ) to complete</li><li>Click anywhere when the motivational quote appear</li></ol>|<ol><li>Landing page will show a loading bar if map is still loading</li><li>When map is done loading, the loading bar will disappear and a motivational quote will appear</li><li>Clicking anywhere the page will collapse to reveal the map</li></ol>|
+|Changing Map layout|<ol><li>While on the map page, mouse over to the bottom right layer icon</li><li>Select one of the radio button to change the layout</li></ol>|<ol><li>Mousing over will change the icon to a selection of radio buttons</li><li>Clicking on any of the radio button will instantly change to look of the map</li></ol>|
+|Search for Gym and Studio|<ol><li>Enter a query in the text input ( Optional )</li><li>Select a type of Gym or Studio ( Optional )( Default will show all type of Gym and Studio )</li><li>Click the search button</li></ol>|<ol><li>Unique markers will appear on the map</li><li>Search results will appear on top left</li></ol>|
+|Validation of Gym and Studio search|<ol><li>Move the visual location to the ocean</li><li>Click the Search Button</li></ol>|<ol><li>An alert will appear displaying an error warning</li></ol>|
+|Show details of selected Map Marker|<ol><li>After the search, click on the name of Gym and Studio on the search result list</li><li>Wait for the transition</li></ol>|<ol><li>The search result list will collapse</li><li>The map will transit to the selected Gym and Studio and zoom in</li><li>A popup will appear showing the name, address, a image and a review ( If Any )</li></ol>|
+|Toggling display food centre within a 500m radius|<ol><li>Click the 🍜 icon button</li><li>Click again to toggle display</li></ol>|<ol><li>Clicking it will display the radius, the center and the food markers within the radius</li><li>The button will be highlighted to indicate the toggle is on</li><li>Clicking it again wil remove the radius, the center and the food markers. The button will not be highlighted to indicate the toggle is off</li></ol>|
+|Toggling display of Weather|<ol><li>Click the ⛅ icon button</li><li>Click again to toggle the display</li></ol>|<ol><li>Will display a 3km radius and a weather marker</li><li>The weather result will be displays on the top left with tempertature</li><li>Clicking it again will remove the marker and radius. Text display on the top left will disappear</li></ol>|
+|Login to an exsisting account|<ol><li>Click on the login on the bottom left</li><li>Type in the account infomations</li><li>Click the login button on the form</li></ol>|<ol><li>A form will appear after clicking the login</li><li>Clicking login after inputting the account info will display account infomation</li><li>Bottom left login button will change to user's name</li></ol>|
+|Create a new account|<ol><li>Click the login button on the bottom left</li><li>Click the create account button on the form</li><li>Input infomations that is needed</li><li>Click the submit button</li></ol>|<ol><li>A form will display</li><li>After step 2 the login form will change into account create form</li><li>After submitting account create form will change into account form</li><li>Login button on the bottom left will change into user's name</li></ol>|
+|Logging out|<ol><li>Click the name on the bottom left</li><li>click the log out button</li></ol>|<ol><li>Account infomation will appear</li><li>After click logout, the account form will change into login form</li><li>Button on the bottom left will change from user's name into Login</li></ol>|
+|Account Login and Creatation validation|<ol><li>Enter the required information on the login form or the account create form incorrectly or leaving it empty</li><li>Click the submit or login button on the form</li></ol>|<ol><li>Error message will appear informing the user of the required information</li></ol>|
+</details>
 
-
+<p align="right">(<a href="#healthmax"> Back to top </a>)</p>
 
 ## Credits
-### Logo
-* By Eric using [CLIP STUDIO PAINT](https://www.clipstudio.net/)
+### Logo and Art
+* By Eric Er Chin Ann using [CLIP STUDIO PAINT](https://www.clipstudio.net/)
 <br/><br/>
 
 ### Map Marker
